@@ -27,7 +27,7 @@ info:
   Size: 2 Orgs with 1 Peer
   Orderer: Solo,
   Distribution: Single Host
-  StateDB: GoLevelDB
+  StateDB: Helium
 
 clients:
   client0.org1.example.com:
