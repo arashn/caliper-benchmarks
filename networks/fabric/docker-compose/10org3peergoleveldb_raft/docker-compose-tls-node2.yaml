@@ -32,6 +32,8 @@ services:
         - ../../config_raft/crypto-config/peerOrganizations/org4.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
         - ../../config_raft/crypto-config/peerOrganizations/org4.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
         container_name: ca.org4.example.com
+        networks:
+          - 10org3peergoleveldb
 
     ca.org5.example.com:
         image: hyperledger/fabric-ca:${FABRIC_VERSION}
@@ -50,6 +52,8 @@ services:
         - ../../config_raft/crypto-config/peerOrganizations/org5.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
         - ../../config_raft/crypto-config/peerOrganizations/org5.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
         container_name: ca.org5.example.com
+        networks:
+          - 10org3peergoleveldb
 
     ca.org6.example.com:
         image: hyperledger/fabric-ca:${FABRIC_VERSION}
@@ -68,6 +72,8 @@ services:
         - ../../config_raft/crypto-config/peerOrganizations/org6.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
         - ../../config_raft/crypto-config/peerOrganizations/org6.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
         container_name: ca.org6.example.com
+        networks:
+          - 10org3peergoleveldb
 
     orderer1.example.com:
         container_name: orderer1.example.com
@@ -103,6 +109,8 @@ services:
         - ca.org8.example.com
         - ca.org9.example.com
         - ca.org10.example.com
+        networks:
+          - 10org3peergoleveldb
 
     peer0.org4.example.com:
         container_name: peer0.org4.example.com
@@ -125,7 +133,7 @@ services:
         - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
         - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
         - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
-        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=2org1peergoleveldbraft_default
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: peer node start
         ports:
@@ -137,6 +145,8 @@ services:
         - orderer0.example.com
         - orderer1.example.com
         - orderer2.example.com
+        networks:
+          - 10org3peergoleveldb
 
     peer1.org4.example.com:
         container_name: peer1.org4.example.com
@@ -159,7 +169,7 @@ services:
         - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
         - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
         - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
-        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=2org1peergoleveldbraft_default
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: peer node start
         ports:
@@ -171,6 +181,8 @@ services:
         - orderer0.example.com
         - orderer1.example.com
         - orderer2.example.com
+        networks:
+          - 10org3peergoleveldb
 
     peer2.org4.example.com:
         container_name: peer2.org4.example.com
@@ -193,7 +205,7 @@ services:
         - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
         - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
         - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
-        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=2org1peergoleveldbraft_default
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: peer node start
         ports:
@@ -205,6 +217,8 @@ services:
         - orderer0.example.com
         - orderer1.example.com
         - orderer2.example.com
+        networks:
+          - 10org3peergoleveldb
 
     peer0.org5.example.com:
         container_name: peer0.org5.example.com
@@ -227,7 +241,7 @@ services:
         - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
         - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
         - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
-        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=2org1peergoleveldbraft_default
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: peer node start
         ports:
@@ -239,6 +253,8 @@ services:
         - orderer0.example.com
         - orderer1.example.com
         - orderer2.example.com
+        networks:
+          - 10org3peergoleveldb
 
     peer1.org5.example.com:
         container_name: peer1.org5.example.com
@@ -261,7 +277,7 @@ services:
         - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
         - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
         - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
-        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=2org1peergoleveldbraft_default
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: peer node start
         ports:
@@ -273,6 +289,8 @@ services:
         - orderer0.example.com
         - orderer1.example.com
         - orderer2.example.com
+        networks:
+          - 10org3peergoleveldb
 
     peer2.org5.example.com:
         container_name: peer2.org5.example.com
@@ -295,7 +313,7 @@ services:
         - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
         - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
         - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
-        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=2org1peergoleveldbraft_default
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: peer node start
         ports:
@@ -307,6 +325,8 @@ services:
         - orderer0.example.com
         - orderer1.example.com
         - orderer2.example.com
+        networks:
+          - 10org3peergoleveldb
 
     peer0.org6.example.com:
         container_name: peer0.org6.example.com
@@ -329,7 +349,7 @@ services:
         - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
         - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
         - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
-        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=2org1peergoleveldbraft_default
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: peer node start
         ports:
@@ -341,6 +361,8 @@ services:
         - orderer0.example.com
         - orderer1.example.com
         - orderer2.example.com
+        networks:
+          - 10org3peergoleveldb
 
     peer1.org6.example.com:
         container_name: peer1.org6.example.com
@@ -363,7 +385,7 @@ services:
         - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
         - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
         - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
-        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=2org1peergoleveldbraft_default
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: peer node start
         ports:
@@ -375,6 +397,8 @@ services:
         - orderer0.example.com
         - orderer1.example.com
         - orderer2.example.com
+        networks:
+          - 10org3peergoleveldb
 
     peer2.org6.example.com:
         container_name: peer2.org6.example.com
@@ -397,7 +421,7 @@ services:
         - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
         - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
         - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
-        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=2org1peergoleveldbraft_default
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: peer node start
         ports:
@@ -409,3 +433,5 @@ services:
         - orderer0.example.com
         - orderer1.example.com
         - orderer2.example.com
+        networks:
+          - 10org3peergoleveldb
