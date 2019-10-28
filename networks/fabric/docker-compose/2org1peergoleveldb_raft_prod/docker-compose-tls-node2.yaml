@@ -92,14 +92,6 @@ services:
         volumes:
         - ../../config_raft/:/etc/hyperledger/configtx
         - ../../config_raft/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/:/etc/hyperledger/msp/orderer
-        extra_hosts:
-        - "ca.org1.example.com:falcon3"
-        - "ca.org2.example.com:falcon3"
-        - "ca.org3.example.com:falcon3"
-        - "ca.org7.example.com:falcon5"
-        - "ca.org8.example.com:falcon5"
-        - "ca.org9.example.com:falcon5"
-        - "ca.org10.example.com:falcon5"
         depends_on:
         - ca.org1.example.com
         - ca.org2.example.com
@@ -141,9 +133,6 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft/crypto-config/peerOrganizations/org4.example.com/peers/peer0.org4.example.com/:/etc/hyperledger/msp/peer
-        extra_hosts:
-        - "orderer0.example.com:falcon3"
-        - "orderer2.example.com:falcon5"
         depends_on:
         - orderer0.example.com
         - orderer1.example.com
@@ -178,9 +167,6 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft/crypto-config/peerOrganizations/org4.example.com/peers/peer1.org4.example.com/:/etc/hyperledger/msp/peer
-        extra_hosts:
-        - "orderer0.example.com:falcon3"
-        - "orderer2.example.com:falcon5"
         depends_on:
         - orderer0.example.com
         - orderer1.example.com
@@ -215,9 +201,6 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft/crypto-config/peerOrganizations/org4.example.com/peers/peer2.org4.example.com/:/etc/hyperledger/msp/peer
-        extra_hosts:
-        - "orderer0.example.com:falcon3"
-        - "orderer2.example.com:falcon5"
         depends_on:
         - orderer0.example.com
         - orderer1.example.com
@@ -252,9 +235,6 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft/crypto-config/peerOrganizations/org5.example.com/peers/peer0.org5.example.com/:/etc/hyperledger/msp/peer
-        extra_hosts:
-        - "orderer0.example.com:falcon3"
-        - "orderer2.example.com:falcon5"
         depends_on:
         - orderer0.example.com
         - orderer1.example.com
@@ -289,9 +269,6 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft/crypto-config/peerOrganizations/org5.example.com/peers/peer1.org5.example.com/:/etc/hyperledger/msp/peer
-        extra_hosts:
-        - "orderer0.example.com:falcon3"
-        - "orderer2.example.com:falcon5"
         depends_on:
         - orderer0.example.com
         - orderer1.example.com
@@ -326,9 +303,6 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft/crypto-config/peerOrganizations/org5.example.com/peers/peer2.org5.example.com/:/etc/hyperledger/msp/peer
-        extra_hosts:
-        - "orderer0.example.com:falcon3"
-        - "orderer2.example.com:falcon5"
         depends_on:
         - orderer0.example.com
         - orderer1.example.com
@@ -363,9 +337,6 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft/crypto-config/peerOrganizations/org6.example.com/peers/peer0.org6.example.com/:/etc/hyperledger/msp/peer
-        extra_hosts:
-        - "orderer0.example.com:falcon3"
-        - "orderer2.example.com:falcon5"
         depends_on:
         - orderer0.example.com
         - orderer1.example.com
@@ -400,9 +371,6 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft/crypto-config/peerOrganizations/org6.example.com/peers/peer1.org6.example.com/:/etc/hyperledger/msp/peer
-        extra_hosts:
-        - "orderer0.example.com:falcon3"
-        - "orderer2.example.com:falcon5"
         depends_on:
         - orderer0.example.com
         - orderer1.example.com
@@ -437,9 +405,6 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft/crypto-config/peerOrganizations/org6.example.com/peers/peer2.org6.example.com/:/etc/hyperledger/msp/peer
-        extra_hosts:
-        - "orderer0.example.com:falcon3"
-        - "orderer2.example.com:falcon5"
         depends_on:
         - orderer0.example.com
         - orderer1.example.com
