@@ -12,10 +12,19 @@
 # limitations under the License.
 #
 
-version: '2'
+version: '3'
+
+networks:
+    10org3peergoleveldb:
+        external:
+            name: 10org3peergoleveldb
 
 services:
-    ca.org1.example.com:
+    ca_org1:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE1}
         image: hyperledger/fabric-ca:${FABRIC_VERSION}
         environment:
         - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
@@ -31,9 +40,16 @@ services:
         volumes:
         - ../../config_raft/crypto-config/peerOrganizations/org1.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
         - ../../config_raft/crypto-config/peerOrganizations/org1.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
-        container_name: ca.org1.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - ca.org1.example.com
 
-    ca.org2.example.com:
+    ca_org2:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE1}
         image: hyperledger/fabric-ca:${FABRIC_VERSION}
         environment:
         - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
@@ -49,9 +65,16 @@ services:
         volumes:
         - ../../config_raft/crypto-config/peerOrganizations/org2.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
         - ../../config_raft/crypto-config/peerOrganizations/org2.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
-        container_name: ca.org2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - ca.org2.example.com
 
-    ca.org3.example.com:
+    ca_org3:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE1}
         image: hyperledger/fabric-ca:${FABRIC_VERSION}
         environment:
         - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
@@ -62,14 +85,21 @@ services:
         - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-tls/tlsca.org3.example.com-cert.pem
         - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-tls/key.pem
         ports:
-        - "8054:7054"
+        - "9054:7054"
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
         volumes:
         - ../../config_raft/crypto-config/peerOrganizations/org3.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
         - ../../config_raft/crypto-config/peerOrganizations/org3.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
-        container_name: ca.org3.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - ca.org3.example.com
 
-    ca.org4.example.com:
+    ca_org4:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE2}
         image: hyperledger/fabric-ca:${FABRIC_VERSION}
         environment:
         - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
@@ -80,14 +110,21 @@ services:
         - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-tls/tlsca.org4.example.com-cert.pem
         - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-tls/key.pem
         ports:
-        - "8054:7054"
+        - "7054:7054"
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
         volumes:
         - ../../config_raft/crypto-config/peerOrganizations/org4.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
         - ../../config_raft/crypto-config/peerOrganizations/org4.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
-        container_name: ca.org4.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - ca.org4.example.com
 
-    ca.org5.example.com:
+    ca_org5:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE2}
         image: hyperledger/fabric-ca:${FABRIC_VERSION}
         environment:
         - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
@@ -103,9 +140,16 @@ services:
         volumes:
         - ../../config_raft/crypto-config/peerOrganizations/org5.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
         - ../../config_raft/crypto-config/peerOrganizations/org5.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
-        container_name: ca.org5.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - ca.org5.example.com
 
-    ca.org6.example.com:
+    ca_org6:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE2}
         image: hyperledger/fabric-ca:${FABRIC_VERSION}
         environment:
         - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
@@ -116,14 +160,21 @@ services:
         - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-tls/tlsca.org6.example.com-cert.pem
         - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-tls/key.pem
         ports:
-        - "8054:7054"
+        - "9054:7054"
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
         volumes:
         - ../../config_raft/crypto-config/peerOrganizations/org6.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
         - ../../config_raft/crypto-config/peerOrganizations/org6.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
-        container_name: ca.org6.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - ca.org6.example.com
 
-    ca.org7.example.com:
+    ca_org7:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
         image: hyperledger/fabric-ca:${FABRIC_VERSION}
         environment:
         - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
@@ -134,14 +185,21 @@ services:
         - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-tls/tlsca.org7.example.com-cert.pem
         - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-tls/key.pem
         ports:
-        - "8054:7054"
+        - "7054:7054"
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
         volumes:
         - ../../config_raft/crypto-config/peerOrganizations/org7.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
         - ../../config_raft/crypto-config/peerOrganizations/org7.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
-        container_name: ca.org7.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - ca.org7.example.com
 
-    ca.org8.example.com:
+    ca_org8
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
         image: hyperledger/fabric-ca:${FABRIC_VERSION}
         environment:
         - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
@@ -157,9 +215,16 @@ services:
         volumes:
         - ../../config_raft/crypto-config/peerOrganizations/org8.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
         - ../../config_raft/crypto-config/peerOrganizations/org8.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
-        container_name: ca.org8.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - ca.org8.example.com
 
-    ca.org9.example.com:
+    ca_org9:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
         image: hyperledger/fabric-ca:${FABRIC_VERSION}
         environment:
         - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
@@ -170,14 +235,21 @@ services:
         - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-tls/tlsca.org9.example.com-cert.pem
         - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-tls/key.pem
         ports:
-        - "8054:7054"
+        - "9054:7054"
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
         volumes:
         - ../../config_raft/crypto-config/peerOrganizations/org9.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
         - ../../config_raft/crypto-config/peerOrganizations/org9.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
-        container_name: ca.org9.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - ca.org9.example.com
 
-    ca.org10.example.com:
+    ca_org10:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
         image: hyperledger/fabric-ca:${FABRIC_VERSION}
         environment:
         - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
@@ -188,15 +260,21 @@ services:
         - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-tls/tlsca.org10.example.com-cert.pem
         - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-tls/key.pem
         ports:
-        - "8054:7054"
+        - "10054:7054"
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
         volumes:
         - ../../config_raft/crypto-config/peerOrganizations/org10.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
         - ../../config_raft/crypto-config/peerOrganizations/org10.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
-        container_name: ca.org10.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - ca.org10.example.com
 
-    orderer0.example.com:
-        container_name: orderer0.example.com
+    orderer0:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE1}
         image: hyperledger/fabric-orderer:${FABRIC_VERSION}
         environment:
         - FABRIC_LOGGING_SPEC=grpc=debug:debug
@@ -229,9 +307,16 @@ services:
         - ca.org8.example.com
         - ca.org9.example.com
         - ca.org10.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - orderer0.example.com
 
-    orderer1.example.com:
-        container_name: orderer1.example.com
+    orderer1:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE2}
         image: hyperledger/fabric-orderer:${FABRIC_VERSION}
         environment:
         - FABRIC_LOGGING_SPEC=grpc=debug:debug
@@ -249,7 +334,7 @@ services:
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: orderer
         ports:
-        - 8050:7050
+        - 7050:7050
         volumes:
         - ../../config_raft/:/etc/hyperledger/configtx
         - ../../config_raft/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/:/etc/hyperledger/msp/orderer
@@ -264,9 +349,16 @@ services:
         - ca.org8.example.com
         - ca.org9.example.com
         - ca.org10.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - orderer1.example.com
 
-    orderer2.example.com:
-        container_name: orderer2.example.com
+    orderer2:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
         image: hyperledger/fabric-orderer:${FABRIC_VERSION}
         environment:
         - FABRIC_LOGGING_SPEC=grpc=debug:debug
@@ -284,7 +376,7 @@ services:
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: orderer
         ports:
-        - 9050:7050
+        - 7050:7050
         volumes:
         - ../../config_raft/:/etc/hyperledger/configtx
         - ../../config_raft/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/:/etc/hyperledger/msp/orderer
@@ -299,9 +391,16 @@ services:
         - ca.org8.example.com
         - ca.org9.example.com
         - ca.org10.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - orderer2.example.com
 
-    peer0.org1.example.com:
-        container_name: peer0.org1.example.com
+    peer0_org1:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE1}
         image: hyperledger/fabric-peer:${FABRIC_VERSION}
         environment:
         - FABRIC_LOGGING_SPEC=grpc=debug:debug
@@ -321,7 +420,7 @@ services:
         - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
         - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
         - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
-        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=2org1peergoleveldbraft_default
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: peer node start
         ports:
@@ -333,9 +432,98 @@ services:
         - orderer0.example.com
         - orderer1.example.com
         - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer0.org1.example.com
 
-    peer0.org2.example.com:
-        container_name: peer0.org2.example.com
+    peer1_org1:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE1}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer1.org1.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org1MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer1.org1.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org1.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 8051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer1.org1.example.com
+
+    peer2_org1:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE1}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer2.org1.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org1MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer2.org1.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org1.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 9051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer2.org1.example.com
+
+    peer0_org2:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE1}
         image: hyperledger/fabric-peer:${FABRIC_VERSION}
         environment:
         - FABRIC_LOGGING_SPEC=grpc=debug:debug
@@ -355,11 +543,11 @@ services:
         - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
         - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
         - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
-        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=2org1peergoleveldbraft_default
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric
         command: peer node start
         ports:
-        - 8051:7051
+        - 10051:7051
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/msp/peer
@@ -367,3 +555,1073 @@ services:
         - orderer0.example.com
         - orderer1.example.com
         - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer0.org2.example.com
+
+    peer1_org2:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE1}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer1.org2.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org2MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer1.org2.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org2.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 11051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer1.org2.example.com
+
+    peer2_org2:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE1}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer2.org2.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org2MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer2.org2.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org2.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 12051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org2.example.com/peers/peer2.org2.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer2.org2.example.com
+
+    peer0_org3:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE1}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer0.org3.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org3MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer0.org3.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org3.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 13051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer0.org3.example.com
+
+    peer1_org3:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE1}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer1.org3.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org3MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer1.org3.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org3.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 14051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org3.example.com/peers/peer1.org3.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer1.org3.example.com
+
+    peer2_org3:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE1}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer2.org3.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org3MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer2.org3.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org3.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 15051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org3.example.com/peers/peer2.org3.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer2.org3.example.com
+
+    peer0_org4:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE2}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer0.org4.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org4MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer0.org4.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org4.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 7051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org4.example.com/peers/peer0.org4.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer0.org4.example.com
+
+    peer1_org4:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE2}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer1.org4.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org4MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer1.org4.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org4.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 8051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org4.example.com/peers/peer1.org4.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer1.org4.example.com
+
+    peer2_org4:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE2}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer2.org4.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org4MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer2.org4.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org4.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 9051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org4.example.com/peers/peer2.org4.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer2.org4.example.com
+
+    peer0_org5:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE2}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer0.org5.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org5MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer0.org5.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org5.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 10051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org5.example.com/peers/peer0.org5.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer0.org5.example.com
+
+    peer1_org5:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE2}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer1.org5.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org5MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer1.org5.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org5.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 11051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org5.example.com/peers/peer1.org5.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer1.org5.example.com
+
+    peer2_org5:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE2}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer2.org5.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org5MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer2.org5.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org5.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 12051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org5.example.com/peers/peer2.org5.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer2.org5.example.com
+
+    peer0_org6:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE2}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer0.org6.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org6MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer0.org6.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org6.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 13051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org6.example.com/peers/peer0.org6.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer0.org6.example.com
+
+    peer1_org6:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE2}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer1.org6.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org6MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer1.org6.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org6.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 14051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org6.example.com/peers/peer1.org6.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer1.org6.example.com
+
+    peer2_org6:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE2}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer2.org6.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org6MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer2.org6.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org6.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 15051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org6.example.com/peers/peer2.org6.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer2.org6.example.com
+
+    peer0_org7:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer0.org7.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org4MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer0.org7.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org7.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 7051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org7.example.com/peers/peer0.org7.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer0.org7.example.com
+
+    peer1_org7:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer1.org7.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org7MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer1.org7.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org7.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 8051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org7.example.com/peers/peer1.org7.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer1.org7.example.com
+
+    peer2_org7:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer2.org7.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org7MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer2.org7.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org7.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 9051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org7.example.com/peers/peer2.org7.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer2.org7.example.com
+
+    peer0_org8:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer0.org8.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org8MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer0.org8.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org8.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 10051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org8.example.com/peers/peer0.org8.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer0.org8.example.com
+
+    peer1_org8:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer1.org8.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org8MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer1.org8.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org8.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 11051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org8.example.com/peers/peer1.org8.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer1.org8.example.com
+
+    peer2_org8:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer2.org8.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org8MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer2.org8.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org8.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 12051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org8.example.com/peers/peer2.org8.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer2.org8.example.com
+
+    peer0_org9:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer0.org9.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org9MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer0.org9.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org9.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 13051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org9.example.com/peers/peer0.org9.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer0.org9.example.com
+
+    peer1_org9:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer1.org9.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org9MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer1.org9.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org9.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 14051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org9.example.com/peers/peer1.org9.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer1.org9.example.com
+
+    peer2_org9:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer2.org9.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org9MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer2.org9.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org9.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 15051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org9.example.com/peers/peer2.org9.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer2.org9.example.com
+
+    peer0_org10:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer0.org10.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org10MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer0.org10.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org10.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 16051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org10.example.com/peers/peer0.org10.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer0.org10.example.com
+
+    peer1_org10:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer1.org10.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org10MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer1.org10.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org10.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 17051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org10.example.com/peers/peer1.org10.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer1.org10.example.com
+
+    peer2_org10:
+        deploy:
+            placement:
+                constraints:
+                    - node.hostname == ${NODE3}
+        image: hyperledger/fabric-peer:${FABRIC_VERSION}
+        environment:
+        - FABRIC_LOGGING_SPEC=grpc=debug:debug
+        - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+        - CORE_CHAINCODE_LOGGING_SHIM=INFO
+        - CORE_CHAINCODE_EXECUTETIMEOUT=999999
+        - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+        - CORE_PEER_ID=peer2.org10.example.com
+        - CORE_PEER_ENDORSER_ENABLED=true
+        - CORE_PEER_LOCALMSPID=Org10MSP
+        - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
+        - CORE_PEER_ADDRESS=peer2.org10.example.com:7051
+        - CORE_PEER_GOSSIP_USELEADERELECTION=true
+        - CORE_PEER_GOSSIP_ORGLEADER=false
+        - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org10.example.com:7051
+        - CORE_PEER_TLS_ENABLED=true
+        - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/msp/peer/tls/server.key
+        - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
+        - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
+        - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=10org3peergoleveldb
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+        command: peer node start
+        ports:
+        - 18051:7051
+        volumes:
+        - /var/run/:/host/var/run/
+        - ../../config_raft/crypto-config/peerOrganizations/org10.example.com/peers/peer2.org10.example.com/:/etc/hyperledger/msp/peer
+        depends_on:
+        - orderer0.example.com
+        - orderer1.example.com
+        - orderer2.example.com
+        networks:
+            10org3peergoleveldb:
+                aliases:
+                    - peer2.org10.example.com
