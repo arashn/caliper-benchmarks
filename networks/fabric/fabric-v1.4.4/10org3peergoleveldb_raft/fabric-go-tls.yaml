@@ -246,6 +246,8 @@ organizations:
     mspid: Org1MSP
     peers:
     - peer0.org1.example.com
+    - peer1.org1.example.com
+    - peer2.org1.example.com
     certificateAuthorities:
     - ca.org1.example.com
     adminPrivateKey:
@@ -257,6 +259,8 @@ organizations:
     mspid: Org2MSP
     peers:
     - peer0.org2.example.com
+    - peer1.org2.example.com
+    - peer2.org2.example.com
     certificateAuthorities:
     - ca.org2.example.com
     adminPrivateKey:
@@ -268,6 +272,8 @@ organizations:
     mspid: Org3MSP
     peers:
     - peer0.org3.example.com
+    - peer1.org3.example.com
+    - peer2.org3.example.com
     certificateAuthorities:
     - ca.org3.example.com
     adminPrivateKey:
@@ -279,6 +285,8 @@ organizations:
     mspid: Org4MSP
     peers:
     - peer0.org4.example.com
+    - peer1.org4.example.com
+    - peer2.org4.example.com
     certificateAuthorities:
     - ca.org4.example.com
     adminPrivateKey:
@@ -290,6 +298,8 @@ organizations:
     mspid: Org5MSP
     peers:
     - peer0.org5.example.com
+    - peer1.org5.example.com
+    - peer2.org5.example.com
     certificateAuthorities:
     - ca.org5.example.com
     adminPrivateKey:
@@ -301,6 +311,8 @@ organizations:
     mspid: Org6MSP
     peers:
     - peer0.org6.example.com
+    - peer1.org6.example.com
+    - peer2.org6.example.com
     certificateAuthorities:
     - ca.org6.example.com
     adminPrivateKey:
@@ -312,6 +324,8 @@ organizations:
     mspid: Org7MSP
     peers:
     - peer0.org7.example.com
+    - peer1.org7.example.com
+    - peer2.org7.example.com
     certificateAuthorities:
     - ca.org7.example.com
     adminPrivateKey:
@@ -323,6 +337,8 @@ organizations:
     mspid: Org8MSP
     peers:
     - peer0.org8.example.com
+    - peer1.org8.example.com
+    - peer2.org8.example.com
     certificateAuthorities:
     - ca.org8.example.com
     adminPrivateKey:
@@ -334,6 +350,8 @@ organizations:
     mspid: Org9MSP
     peers:
     - peer0.org9.example.com
+    - peer1.org9.example.com
+    - peer2.org9.example.com
     certificateAuthorities:
     - ca.org9.example.com
     adminPrivateKey:
@@ -345,6 +363,8 @@ organizations:
     mspid: Org10MSP
     peers:
     - peer0.org10.example.com
+    - peer1.org10.example.com
+    - peer2.org10.example.com
     certificateAuthorities:
     - ca.org10.example.com
     adminPrivateKey:
