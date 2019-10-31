@@ -50,7 +50,6 @@ services:
         command: peer node start
         ports:
         - "7051:7051"
-        - "7052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/msp/peer
@@ -89,7 +88,6 @@ services:
         command: peer node start
         ports:
         - "8051:7051"
-        - "8052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/:/etc/hyperledger/msp/peer
@@ -128,7 +126,6 @@ services:
         command: peer node start
         ports:
         - "9051:7051"
-        - "9052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/:/etc/hyperledger/msp/peer
@@ -167,7 +164,6 @@ services:
         command: peer node start
         ports:
         - "10051:7051"
-        - "10052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/msp/peer
@@ -206,7 +202,6 @@ services:
         command: peer node start
         ports:
         - "11051:7051"
-        - "11052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/:/etc/hyperledger/msp/peer
@@ -245,7 +240,6 @@ services:
         command: peer node start
         ports:
         - "12051:7051"
-        - "12052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org2.example.com/peers/peer2.org2.example.com/:/etc/hyperledger/msp/peer
@@ -284,7 +278,6 @@ services:
         command: peer node start
         ports:
         - "13051:7051"
-        - "13052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/:/etc/hyperledger/msp/peer
@@ -323,7 +316,6 @@ services:
         command: peer node start
         ports:
         - "14051:7051"
-        - "14052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org3.example.com/peers/peer1.org3.example.com/:/etc/hyperledger/msp/peer
@@ -362,7 +354,6 @@ services:
         command: peer node start
         ports:
         - "15051:7051"
-        - "15052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org3.example.com/peers/peer2.org3.example.com/:/etc/hyperledger/msp/peer
@@ -401,7 +392,6 @@ services:
         command: peer node start
         ports:
         - "16051:7051"
-        - "16052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org4.example.com/peers/peer0.org4.example.com/:/etc/hyperledger/msp/peer
@@ -440,7 +430,6 @@ services:
         command: peer node start
         ports:
         - "17051:7051"
-        - "17052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org4.example.com/peers/peer1.org4.example.com/:/etc/hyperledger/msp/peer
@@ -479,7 +468,6 @@ services:
         command: peer node start
         ports:
         - "18051:7051"
-        - "18052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org4.example.com/peers/peer2.org4.example.com/:/etc/hyperledger/msp/peer
@@ -518,7 +506,6 @@ services:
         command: peer node start
         ports:
         - "19051:7051"
-        - "19052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org5.example.com/peers/peer0.org5.example.com/:/etc/hyperledger/msp/peer
@@ -557,7 +544,6 @@ services:
         command: peer node start
         ports:
         - "20051:7051"
-        - "20052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org5.example.com/peers/peer1.org5.example.com/:/etc/hyperledger/msp/peer
@@ -596,7 +582,6 @@ services:
         command: peer node start
         ports:
         - "21051:7051"
-        - "21052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org5.example.com/peers/peer2.org5.example.com/:/etc/hyperledger/msp/peer
@@ -635,7 +620,6 @@ services:
         command: peer node start
         ports:
         - "22051:7051"
-        - "22052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org6.example.com/peers/peer0.org6.example.com/:/etc/hyperledger/msp/peer
@@ -674,7 +658,6 @@ services:
         command: peer node start
         ports:
         - "23051:7051"
-        - "23052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org6.example.com/peers/peer1.org6.example.com/:/etc/hyperledger/msp/peer
@@ -713,7 +696,6 @@ services:
         command: peer node start
         ports:
         - "24051:7051"
-        - "24052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org6.example.com/peers/peer2.org6.example.com/:/etc/hyperledger/msp/peer
@@ -752,7 +734,6 @@ services:
         command: peer node start
         ports:
         - "25051:7051"
-        - "25052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org7.example.com/peers/peer0.org7.example.com/:/etc/hyperledger/msp/peer
@@ -791,7 +772,6 @@ services:
         command: peer node start
         ports:
         - "26051:7051"
-        - "26052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org7.example.com/peers/peer1.org7.example.com/:/etc/hyperledger/msp/peer
@@ -830,7 +810,6 @@ services:
         command: peer node start
         ports:
         - "27051:7051"
-        - "27052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org7.example.com/peers/peer2.org7.example.com/:/etc/hyperledger/msp/peer
@@ -869,7 +848,6 @@ services:
         command: peer node start
         ports:
         - "28051:7051"
-        - "28052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org8.example.com/peers/peer0.org8.example.com/:/etc/hyperledger/msp/peer
@@ -908,7 +886,6 @@ services:
         command: peer node start
         ports:
         - "29051:7051"
-        - "29052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org8.example.com/peers/peer1.org8.example.com/:/etc/hyperledger/msp/peer
@@ -947,7 +924,6 @@ services:
         command: peer node start
         ports:
         - "30051:7051"
-        - "30052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org8.example.com/peers/peer2.org8.example.com/:/etc/hyperledger/msp/peer
@@ -986,7 +962,6 @@ services:
         command: peer node start
         ports:
         - "31051:7051"
-        - "31052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org9.example.com/peers/peer0.org9.example.com/:/etc/hyperledger/msp/peer
@@ -1025,7 +1000,6 @@ services:
         command: peer node start
         ports:
         - "32051:7051"
-        - "32052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org9.example.com/peers/peer1.org9.example.com/:/etc/hyperledger/msp/peer
@@ -1064,7 +1038,6 @@ services:
         command: peer node start
         ports:
         - "33051:7051"
-        - "33052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org9.example.com/peers/peer2.org9.example.com/:/etc/hyperledger/msp/peer
@@ -1103,7 +1076,6 @@ services:
         command: peer node start
         ports:
         - "34051:7051"
-        - "34052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org10.example.com/peers/peer0.org10.example.com/:/etc/hyperledger/msp/peer
@@ -1142,7 +1114,6 @@ services:
         command: peer node start
         ports:
         - "35051:7051"
-        - "35052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org10.example.com/peers/peer1.org10.example.com/:/etc/hyperledger/msp/peer
@@ -1181,7 +1152,6 @@ services:
         command: peer node start
         ports:
         - "36051:7051"
-        - "36052:7052"
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org10.example.com/peers/peer2.org10.example.com/:/etc/hyperledger/msp/peer
