@@ -46,17 +46,6 @@ services:
         volumes:
         - ../../config_raft_prod/:/etc/hyperledger/configtx
         - ../../config_raft_prod/crypto-config/ordererOrganizations/example.com/orderers/orderer0.example.com/:/etc/hyperledger/msp/orderer
-        depends_on:
-        - ca.org1.example.com
-        - ca.org2.example.com
-        - ca.org3.example.com
-        - ca.org4.example.com
-        - ca.org5.example.com
-        - ca.org6.example.com
-        - ca.org7.example.com
-        - ca.org8.example.com
-        - ca.org9.example.com
-        - ca.org10.example.com
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -88,17 +77,6 @@ services:
         volumes:
         - ../../config_raft_prod/:/etc/hyperledger/configtx
         - ../../config_raft_prod/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/:/etc/hyperledger/msp/orderer
-        depends_on:
-        - ca.org1.example.com
-        - ca.org2.example.com
-        - ca.org3.example.com
-        - ca.org4.example.com
-        - ca.org5.example.com
-        - ca.org6.example.com
-        - ca.org7.example.com
-        - ca.org8.example.com
-        - ca.org9.example.com
-        - ca.org10.example.com
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -130,17 +108,6 @@ services:
         volumes:
         - ../../config_raft_prod/:/etc/hyperledger/configtx
         - ../../config_raft_prod/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/:/etc/hyperledger/msp/orderer
-        depends_on:
-        - ca.org1.example.com
-        - ca.org2.example.com
-        - ca.org3.example.com
-        - ca.org4.example.com
-        - ca.org5.example.com
-        - ca.org6.example.com
-        - ca.org7.example.com
-        - ca.org8.example.com
-        - ca.org9.example.com
-        - ca.org10.example.com
         networks:
             10org3peergoleveldb:
                 aliases:
