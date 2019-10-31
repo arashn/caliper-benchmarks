@@ -718,7 +718,7 @@ services:
         - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
         - CORE_PEER_ID=peer0.org7.example.com
         - CORE_PEER_ENDORSER_ENABLED=true
-        - CORE_PEER_LOCALMSPID=Org4MSP
+        - CORE_PEER_LOCALMSPID=Org7MSP
         - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/peer/msp/
         - CORE_PEER_ADDRESS=peer0.org7.example.com:7051
         - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
