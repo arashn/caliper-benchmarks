@@ -115,18 +115,6 @@ clients:
       clientSignedCert:
         path: networks/fabric/config_raft_prod/crypto-config/peerOrganizations/org7.example.com/users/User1@org7.example.com/msp/signcerts/User1@org7.example.com-cert.pem
 
-  client0.org7.example.com:
-    client:
-      organization: Org7
-      credentialStore:
-        path: /tmp/hfc-kvs/org7
-        cryptoStore:
-          path: /tmp/hfc-cvs/org7
-      clientPrivateKey:
-        path: networks/fabric/config_raft_prod/crypto-config/peerOrganizations/org7.example.com/users/User1@org7.example.com/msp/keystore/key.pem
-      clientSignedCert:
-        path: networks/fabric/config_raft_prod/crypto-config/peerOrganizations/org7.example.com/users/User1@org7.example.com/msp/signcerts/User1@org7.example.com-cert.pem
-
   client0.org8.example.com:
     client:
       organization: Org8
