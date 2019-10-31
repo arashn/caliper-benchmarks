@@ -19,9 +19,9 @@ mutual-tls: false
 
 caliper:
   blockchain: fabric
-  #command:
-    #start: export FABRIC_VERSION=latest;docker-compose -f networks/fabric/docker-compose/10org3peergoleveldb_raft/docker-compose-tls.yaml up -d;sleep 3s
-    #end: docker-compose -f networks/fabric/docker-compose/10org3peergoleveldb_raft/docker-compose-tls.yaml down;(test -z \"$(docker ps -aq)\") || docker rm $(docker ps -aq);(test -z \"$(docker images dev* -q)\") || docker rmi $(docker images dev* -q);rm -rf /tmp/hfc-*
+  command:
+      start: networks/fabric/fabric-v1.4.4/10org3peergoleveldb_raft/start.sh falcon3 falcon5 falcon13;sleep 3s
+      end: networks/fabric/fabric-v1.4.4/10org3peergoleveldb_raft/stop.sh;(test -z \"$(docker images dev* -q)\") || docker rmi $(docker images dev* -q);rm -rf /tmp/hfc-*
 
 info:
   Version: 1.4.4
