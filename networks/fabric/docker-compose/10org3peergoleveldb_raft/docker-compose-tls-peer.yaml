@@ -16,8 +16,8 @@ version: '3.7'
 
 networks:
     10org3peergoleveldb:
-        external:
-            name: 10org3peergoleveldb
+        external: true
+        name: 10org3peergoleveldb
 
 services:
     peer0_org1:
