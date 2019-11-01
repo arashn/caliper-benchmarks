@@ -53,6 +53,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org1_peer0:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -91,6 +92,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org1_peer1:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -129,6 +131,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org1_peer2:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -167,6 +170,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org2_peer0:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -205,6 +209,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org2_peer1:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -243,6 +248,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org2.example.com/peers/peer2.org2.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org2_peer2:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -281,6 +287,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org3_peer0:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -319,6 +326,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org3.example.com/peers/peer1.org3.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org3_peer1:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -357,6 +365,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org3.example.com/peers/peer2.org3.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org3_peer2:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -395,6 +404,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org4.example.com/peers/peer0.org4.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org4_peer0:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -433,6 +443,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org4.example.com/peers/peer1.org4.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org4_peer1:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -471,6 +482,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org4.example.com/peers/peer2.org4.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org4_peer2:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -509,6 +521,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org5.example.com/peers/peer0.org5.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org5_peer0:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -547,6 +560,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org5.example.com/peers/peer1.org5.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org5_peer1:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -585,6 +599,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org5.example.com/peers/peer2.org5.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org5_peer2:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -623,6 +638,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org6.example.com/peers/peer0.org6.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org6_peer0:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -661,6 +677,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org6.example.com/peers/peer1.org6.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org6_peer1:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -699,6 +716,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org6.example.com/peers/peer2.org6.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org6_peer2:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -737,6 +755,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org7.example.com/peers/peer0.org7.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org7_peer0:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -775,6 +794,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org7.example.com/peers/peer1.org7.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org7_peer1:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -813,6 +833,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org7.example.com/peers/peer2.org7.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org7_peer2:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -851,6 +872,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org8.example.com/peers/peer0.org8.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org8_peer0:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -889,6 +911,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org8.example.com/peers/peer1.org8.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org8_peer1:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -927,6 +950,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org8.example.com/peers/peer2.org8.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org8_peer2:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -965,6 +989,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org9.example.com/peers/peer0.org9.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org9_peer0:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -1003,6 +1028,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org9.example.com/peers/peer1.org9.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org9_peer1:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -1041,6 +1067,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org9.example.com/peers/peer2.org9.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org9_peer2:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -1079,6 +1106,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org10.example.com/peers/peer0.org10.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org10_peer0:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -1117,6 +1145,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org10.example.com/peers/peer1.org10.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org10_peer1:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
@@ -1155,6 +1184,7 @@ services:
         volumes:
         - /var/run/:/host/var/run/
         - ../../config_raft_prod/crypto-config/peerOrganizations/org10.example.com/peers/peer2.org10.example.com/:/etc/hyperledger/msp/peer
+        - /mnt/ssd/fabric/org10_peer2:/var/hyperledger/production
         networks:
             10org3peergoleveldb:
                 aliases:
